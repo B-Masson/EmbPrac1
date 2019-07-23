@@ -24,8 +24,11 @@ GPIO.setup(led2, GPIO.OUT)
 GPIO.setup(led3, GPIO.OUT)
 GPIO.setup(but1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+def press_callback(channel):
+    print('Success!')
+
 # interrupt stuff
-GPIO.add_event_detect(but1, GPIO.RISING)
+GPIO.add_event_detect(but1, GPIO.RISING, callback=press_callback, bouncetime=150)
 
 # Logic that you write
 def main():
@@ -33,7 +36,7 @@ def main():
     time.sleep(1)
     GPIO.output(led1, 0)
     time.sleep(1)
-
+    
 # Only run the functions if 
 if __name__ == "__main__":
     # Make sure the GPIO is stopped correctly
